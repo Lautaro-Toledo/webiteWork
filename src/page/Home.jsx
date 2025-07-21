@@ -1,7 +1,11 @@
 import React from 'react'
+import { Nav } from '../components/nav'
 
 export const Home = () => {
   return (
-    <div>Home</div>
+    <>
+      <Nav />
+      <h1>Home</h1>
+    </>
   )
 }
