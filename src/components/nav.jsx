@@ -1,0 +1,104 @@
+import React, { useState, useRef, useEffect } from 'react'
+import { Link } from 'react-router-dom'
+
+export const Nav = () => {
+  const [open, setOpen] = useState(false)
+  const [active, setActive] = useState(window.location.hash || '#home')
+  const [scrolled, setScrolled] = useState(false)
+  const dropdownRef = useRef(null)
+  const hoverTimeout = useRef(null)
+
+  // Detectar scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50)
+    }
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  // Cierra el menú si se hace click fuera
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setOpen(false)
+      }
+    }
+    if (open) {
+      document.addEventListener('mousedown', handleClickOutside)
+    } else {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [open])
+
+  // Actualiza el link activo al cambiar el hash
+  useEffect(() => {
+    const onHashChange = () => setActive(window.location.hash || '#home')
+    window.addEventListener('hashchange', onHashChange)
+    return () => window.removeEventListener('hashchange', onHashChange)
+  }, [])
+
+  const handleMouseEnter = () => {
+    clearTimeout(hoverTimeout.current)
+    setOpen(true)
+  }
+  const handleMouseLeave = () => {
+    hoverTimeout.current = setTimeout(() => setOpen(false), 120)
+  }
+
+  const linkClass = (hash) =>
+    `text-white font-semibold hover:text-gray-300 transition-colors px-1 relative after:content-[''] after:block after:h-0.5 after:rounded after:bg-white after:transition-all after:duration-300 after:absolute after:left-0 after:right-0 after:bottom-0 after:scale-x-0 ${active === hash ? 'after:scale-x-100 after:h-0.5' : ''
+    }`
+
+  return (
+    <nav
+      className={`fixed w-full transition-all duration-500 z-50
+        ${scrolled ? 'top-0 bg-gray-900/90 backdrop-blur-sm py-4' : 'top-1/3 bg-transparent'}
+      `}
+    >
+      <div className={`flex px-8 ${scrolled ? 'flex-row justify-between items-center' : 'flex-col items-start gap-3'} transition-all duration-300`}>
+        <a href="/" className={` text-white font-bold hover:text-gray-300 transition-colors ${scrolled ? 'text-2xl' : 'text-5xl'}`}>
+          Valentina Dimitrova, Ph.D.
+        </a>
+
+        <div className={`flex ${scrolled ? 'flex-row gap-6' : 'flex-col items-start gap-2 text-2xl'}`}>
+          <a href="#philosophy" className={linkClass('#philosophy')}>PHILOSOPHY</a>
+          <div
+            className="relative"
+            ref={dropdownRef}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+          >
+            <button
+              className={`text-white font-semibold hover:text-gray-300 transition-colors focus:outline-none px-1 relative after:content-[''] after:block after:h-0.5 after:rounded after:bg-white after:transition-all after:duration-300 after:absolute after:left-0 after:right-0 after:bottom-0 after:scale-x-0 ${['#openlabs', '#grasp', '#tell'].includes(active) ? 'after:scale-x-100 after:h-0.5' : ''
+                }`}
+              onClick={() => setOpen((prev) => !prev)}
+              type="button"
+            >
+              OUTREACH
+            </button>
+            {open && (
+              <div className="absolute left-0 mt-2 w-56 bg-white rounded-md shadow-lg py-2 z-50 flex flex-col">
+                <Link to="/open-labs" className="px-4 py-2 text-black hover:bg-gray-100" onClick={() => setOpen(false)}>
+                  OPEN LABS AT PENN
+                </Link>
+                <Link to="/grasp" className="px-4 py-2 text-black hover:bg-gray-100" onClick={() => setOpen(false)}>
+                  G.R.A.S.P.
+                </Link>
+                <Link to="/tell" className="px-4 py-2 text-black hover:bg-gray-100" onClick={() => setOpen(false)}>
+                  T.E.L.L.
+                </Link>
+              </div>
+            )}
+          </div>
+          <a href="#proyectos" className={linkClass('#proyectos')}>TESTIMONIALS</a>
+          <a href="#contacto" className={linkClass('#contacto')}>RESOURCES</a>
+          <a href="#contacto" className={linkClass('#contacto')}>CONTACT ME</a>
+        </div>
+      </div>
+    </nav>
+  )
+}
