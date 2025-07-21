@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 export const Nav = () => {
   const [open, setOpen] = useState(false)
-  const [active, setActive] = useState(window.location.hash || '#home')
+  const [active, setActive] = useState(window.location.hash || window.location.pathname || '#home')
   const [scrolled, setScrolled] = useState(false)
   const dropdownRef = useRef(null)
   const hoverTimeout = useRef(null)
@@ -34,11 +34,15 @@ export const Nav = () => {
     }
   }, [open])
 
-  // Actualiza el link activo al cambiar el hash
+  // Actualiza el link activo al cambiar el hash o pathname
   useEffect(() => {
-    const onHashChange = () => setActive(window.location.hash || '#home')
-    window.addEventListener('hashchange', onHashChange)
-    return () => window.removeEventListener('hashchange', onHashChange)
+    const onChange = () => setActive(window.location.hash || window.location.pathname || '#home')
+    window.addEventListener('hashchange', onChange)
+    window.addEventListener('popstate', onChange)
+    return () => {
+      window.removeEventListener('hashchange', onChange)
+      window.removeEventListener('popstate', onChange)
+    }
   }, [])
 
   const handleMouseEnter = () => {
@@ -49,8 +53,16 @@ export const Nav = () => {
     hoverTimeout.current = setTimeout(() => setOpen(false), 120)
   }
 
-  const linkClass = (hash) =>
-    `text-white font-semibold hover:text-gray-300 transition-colors px-1 relative after:content-[''] after:block after:h-0.5 after:rounded after:bg-white after:transition-all after:duration-300 after:absolute after:left-0 after:right-0 after:bottom-0 after:scale-x-0 ${active === hash ? 'after:scale-x-100 after:h-0.5' : ''
+  // Helper para barra animada
+  const isActive = (hashOrPath) => {
+    if (hashOrPath === '/testimonials') return window.location.pathname === '/testimonials'
+    if (hashOrPath.startsWith('#')) return active === hashOrPath
+    return window.location.pathname + window.location.hash === hashOrPath
+  }
+
+  const linkClass = (hashOrPath) =>
+    `text-white font-semibold hover:text-gray-300 transition-colors px-1 relative after:content-[''] after:block after:h-0.5 after:rounded after:bg-white after:transition-all after:duration-300 after:absolute after:left-0 after:right-0 after:bottom-0 after:scale-x-0 ${
+      isActive(hashOrPath) ? 'after:scale-x-100 after:h-0.5' : ''
     }`
 
   return (
@@ -65,7 +77,7 @@ export const Nav = () => {
         </a>
 
         <div className={`flex ${scrolled ? 'flex-row gap-6' : 'flex-col items-start gap-2 text-2xl'}`}>
-          <a href="#philosophy" className={linkClass('#philosophy')}>PHILOSOPHY</a>
+          <a href="/#philosophy" className={linkClass('#philosophy')}>PHILOSOPHY</a>
           <div
             className="relative"
             ref={dropdownRef}
@@ -73,15 +85,16 @@ export const Nav = () => {
             onMouseLeave={handleMouseLeave}
           >
             <button
-              className={`text-white font-semibold hover:text-gray-300 transition-colors focus:outline-none px-1 relative after:content-[''] after:block after:h-0.5 after:rounded after:bg-white after:transition-all after:duration-300 after:absolute after:left-0 after:right-0 after:bottom-0 after:scale-x-0 ${['#openlabs', '#grasp', '#tell'].includes(active) ? 'after:scale-x-100 after:h-0.5' : ''
-                }`}
+              className={`text-white font-semibold hover:text-gray-300 transition-colors focus:outline-none px-1 relative after:content-[''] after:block after:h-0.5 after:rounded after:bg-white after:transition-all after:duration-300 after:absolute after:left-0 after:right-0 after:bottom-0 after:scale-x-0 ${
+                ['#openlabs','#grasp','#tell'].some(isActive) ? 'after:scale-x-100 after:h-0.5' : ''
+              }`}
               onClick={() => setOpen((prev) => !prev)}
               type="button"
             >
               OUTREACH
             </button>
             {open && (
-              <div className="absolute left-0 mt-2 w-56 bg-white rounded-md shadow-lg py-2 z-50 flex flex-col">
+              <div className={`absolute  mt-2 w-56 bg-white rounded-md shadow-lg py-2 z-50 flex flex-col ${scrolled ? 'left-0' : 'left-40 top-0'}`}>
                 <Link to="/open-labs" className="px-4 py-2 text-black hover:bg-gray-100" onClick={() => setOpen(false)}>
                   OPEN LABS AT PENN
                 </Link>
@@ -94,9 +107,9 @@ export const Nav = () => {
               </div>
             )}
           </div>
-          <a href="#proyectos" className={linkClass('#proyectos')}>TESTIMONIALS</a>
-          <a href="#contacto" className={linkClass('#contacto')}>RESOURCES</a>
-          <a href="#contacto" className={linkClass('#contacto')}>CONTACT ME</a>
+          <a href="/testimonials" className={linkClass('/testimonials')}>TESTIMONIALS</a>
+          <a href="/#resources" className={linkClass('#resources')}>RESOURCES</a>
+          <a href="#contact" className={linkClass('#contact')}>CONTACT ME</a>
         </div>
       </div>
     </nav>
