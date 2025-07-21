@@ -40,7 +40,7 @@ export const Philosophy = () => {
     <section id="philosophy" className="h-screen w-full bg-white flex items-center justify-center ">
       <div className="container mx-auto px-4">
         <h1 className="text-4xl font-bold text-gray-800 text-center mb-16">Mentoring Philosophy</h1>
-        <div className="relative w-full flex justify-center items-center">
+        <div className="relative w-full flex justify-center items-center shadow-xl shadow-black/20 rounded-2xl">
           <button
             onClick={prevSlide}
             className="absolute -left-11 top-1/2 -translate-y-1/2 bg-gray-700 text-white rounded-full w-10 h-10 shadow hover:bg-gray-900 transition-all z-10 cursor-pointer"

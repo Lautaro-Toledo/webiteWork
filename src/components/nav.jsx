@@ -107,9 +107,9 @@ export const Nav = () => {
               </div>
             )}
           </div>
-          <a href="/testimonials" className={linkClass('/testimonials')}>TESTIMONIALS</a>
-          <a href="/#resources" className={linkClass('#resources')}>RESOURCES</a>
-          <a href="#contact" className={linkClass('#contact')}>CONTACT ME</a>
+          <a href="/#testimonials" className={linkClass('/#testimonials')}>TESTIMONIALS</a>
+          {/* <a href="/#resources" className={linkClass('#resources')}>RESOURCES</a>
+          <a href="/#contact" className={linkClass('#contact')}>CONTACT ME</a> */}
         </div>
       </div>
     </nav>

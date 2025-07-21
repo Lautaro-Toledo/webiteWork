@@ -1,9 +1,9 @@
 import React from 'react'
-import philosophyImgv1 from "../../../assets/Testimonials/1.png";
-import philosophyImgv2 from "../../../assets/Testimonials/2.png";
-import philosophyImgv3 from "../../../assets/Testimonials/3.png";
-import philosophyImgv4 from "../../../assets/Testimonials/4.png";
-import philosophyImgv5 from "../../../assets/Testimonials/5.png";
+import philosophyImgv1 from "../../../../assets/Testimonials/1.png";
+import philosophyImgv2 from "../../../../assets/Testimonials/2.png";
+import philosophyImgv3 from "../../../../assets/Testimonials/3.png";
+import philosophyImgv4 from "../../../../assets/Testimonials/4.png";
+import philosophyImgv5 from "../../../../assets/Testimonials/5.png";
 
 const testimonialsData = [
   {
@@ -45,7 +45,7 @@ const testimonialsData = [
 
 export const TestimonialsSection = () => {
   return (
-    <section className="bg-gray-800 py-16 px-4">
+    <section className="bg-gray-800 py-16 px-4" id='testimonials'> 
       <h1 className="text-4xl font-bold text-white text-center mb-16">
         Mentoring Philosophy
       </h1>
