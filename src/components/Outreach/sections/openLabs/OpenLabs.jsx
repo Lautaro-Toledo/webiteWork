@@ -1,6 +1,7 @@
 import React from 'react';
 import { Nav } from '../../../nav';
 import { Hero } from '../../../Home/sections/Hero/Hero';
+import persona from '../../../../assets/hero/persona.jpg';
 import CardOutreach from '../../cardOutreach';
 import image1 from '../../../../assets/openLabs/image_1.jpg'
 import image2 from '../../../../assets/openLabs/image_3.jpg'
@@ -20,7 +21,7 @@ function OpenLabs() {
   return (
     <>
       <Nav />
-      <Hero />
+      <Hero img={persona} />
       <section className='pt-[80px] px-8'>
         <h1 className='mb-16 text-3xl font-medium text-center'>Outreach: Open Labs at Penn</h1>
         <div className='w-full mb-20 flex justify-between gap-5'>

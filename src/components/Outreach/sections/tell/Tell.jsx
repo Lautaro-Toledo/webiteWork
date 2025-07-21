@@ -1,6 +1,7 @@
 import React from 'react';
 import { Nav } from '../../../nav';
 import { Hero } from '../../../Home/sections/Hero/Hero';
+import persona from '../../../../assets/hero/persona.jpg';
 import image1 from '../../../../assets/tell/image_1.jpg';
 import image2 from '../../../../assets/tell/image_2.png';
 import image3 from '../../../../assets/tell/image_5.jpg';
@@ -11,7 +12,7 @@ function Tell() {
   return (
     <>
       <Nav />
-      <Hero />
+      <Hero img={persona} />
       <section className='pt-[70px] px-8'>
         <h1 className='mb-16 text-3xl font-medium text-center'>Outreach: T.E.L.L.</h1>
         <div className='w-full mb-20 flex justify-between gap-5'>

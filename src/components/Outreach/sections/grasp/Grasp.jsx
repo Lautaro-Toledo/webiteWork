@@ -1,6 +1,7 @@
 import React from 'react';
 import { Nav } from '../../../nav';
 import { Hero } from '../../../Home/sections/Hero/Hero';
+import persona from '../../../../assets/hero/persona.jpg';
 import image1 from '../../../../assets/grasp/image_1.jpg';
 import image2 from '../../../../assets/grasp/image_5.jpg';
 import image3 from '../../../../assets/grasp/image_6.jpg';
@@ -9,7 +10,7 @@ function Grasp() {
   return (
     <>
       <Nav />
-      <Hero />
+      <Hero img={persona} />
       <section className='pt-[70px] px-8'>
         <h1 className='mb-16 text-3xl font-medium text-center'>Outreach: G.R.A.S.P.</h1>
         <div className='w-full mb-20 flex justify-between gap-5'>
