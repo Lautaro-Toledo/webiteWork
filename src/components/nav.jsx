@@ -3,8 +3,18 @@ import React, { useState, useRef, useEffect } from 'react'
 export const Nav = () => {
   const [open, setOpen] = useState(false)
   const [active, setActive] = useState(window.location.hash || '#home')
+  const [scrolled, setScrolled] = useState(false)
   const dropdownRef = useRef(null)
   const hoverTimeout = useRef(null)
+
+  // Detectar scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50)
+    }
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   // Cierra el menú si se hace click fuera
   useEffect(() => {
@@ -30,7 +40,6 @@ export const Nav = () => {
     return () => window.removeEventListener('hashchange', onHashChange)
   }, [])
 
-  // Funciones para hover
   const handleMouseEnter = () => {
     clearTimeout(hoverTimeout.current)
     setOpen(true)
@@ -39,43 +48,51 @@ export const Nav = () => {
     hoverTimeout.current = setTimeout(() => setOpen(false), 120)
   }
 
-  // Helper para clases activas
   const linkClass = (hash) =>
     `text-white font-semibold hover:text-gray-300 transition-colors px-1 relative after:content-[''] after:block after:h-0.5 after:rounded after:bg-white after:transition-all after:duration-300 after:absolute after:left-0 after:right-0 after:bottom-0 after:scale-x-0 ${
       active === hash ? 'after:scale-x-100 after:h-0.5' : ''
-    }`;
+    }`
 
   return (
-    <nav className="fixed top-0 left-0 w-full bg-gray-900 flex items-center justify-between px-8 py-5 z-50">
-      <div className="flex items-center">
-        <a href="#home" className="text-2xl text-white font-bold hover:text-gray-300 transition-colors">Valentina Dimitrova, Ph.D.</a>
-      </div>
-      <div className="flex gap-8">
-        <a href="#philosophy" className={linkClass('#philosophy')}>PHILOSOPHY</a>
-        <div
-          className="relative"
-          ref={dropdownRef}
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-        >
-          <button
-            className={`text-white font-semibold hover:text-gray-300 transition-colors focus:outline-none px-1 relative after:content-[''] after:block after:h-0.5 after:rounded after:bg-white after:transition-all after:duration-300 after:absolute after:left-0 after:right-0 after:bottom-0 after:scale-x-0 ${['#openlabs','#grasp','#tell'].includes(active) ? 'after:scale-x-100 after:h-0.5' : ''}`}
-            onClick={() => setOpen((prev) => !prev)}
-            type="button"
+    <nav
+      className={`fixed w-full transition-all duration-500 z-50
+        ${scrolled ? 'top-0 bg-gray-900/90 backdrop-blur-sm py-4' : 'top-1/3 bg-transparent'}
+      `}
+    >
+      <div className={`flex px-8 ${scrolled ? 'flex-row justify-between items-center' : 'flex-col items-start gap-3'} transition-all duration-300`}>
+        <a href="#home" className={` text-white font-bold hover:text-gray-300 transition-colors ${scrolled ? 'text-2xl' : 'text-5xl'}`}>
+          Valentina Dimitrova, Ph.D.
+        </a>
+
+        <div className={`flex ${scrolled ? 'flex-row gap-6' : 'flex-col items-start gap-2 text-2xl'}`}>
+          <a href="#philosophy" className={linkClass('#philosophy')}>PHILOSOPHY</a>
+          <div
+            className="relative"
+            ref={dropdownRef}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
           >
-            OUTREACH
-          </button>
-          {open && (
-            <div className="absolute left-0 mt-2 w-56 bg-white rounded-md shadow-lg py-2 z-50 flex flex-col">
-              <a href="#openlabs" className="px-4 py-2 text-black hover:bg-gray-100" onClick={() => { setOpen(false); setActive('#openlabs') }}>OPEN LABS AT PENN</a>
-              <a href="#grasp" className="px-4 py-2 text-black hover:bg-gray-100" onClick={() => { setOpen(false); setActive('#grasp') }}>G.R.A.S.P.</a>
-              <a href="#tell" className="px-4 py-2 text-black hover:bg-gray-100" onClick={() => { setOpen(false); setActive('#tell') }}>T.E.L.L.</a>
-            </div>
-          )}
+            <button
+              className={`text-white font-semibold hover:text-gray-300 transition-colors focus:outline-none px-1 relative after:content-[''] after:block after:h-0.5 after:rounded after:bg-white after:transition-all after:duration-300 after:absolute after:left-0 after:right-0 after:bottom-0 after:scale-x-0 ${
+                ['#openlabs','#grasp','#tell'].includes(active) ? 'after:scale-x-100 after:h-0.5' : ''
+              }`}
+              onClick={() => setOpen((prev) => !prev)}
+              type="button"
+            >
+              OUTREACH
+            </button>
+            {open && (
+              <div className={`absolute mt-2  bg-white rounded-md shadow-lg py-2 z-50 flex flex-col ${scrolled ? 'left-0 w-56' : 'left-36 top-0 w-64'}`}>
+                <a href="#openlabs" className="px-4 py-2 text-black hover:bg-gray-100" onClick={() => { setOpen(false); setActive('#openlabs') }}>OPEN LABS AT PENN</a>
+                <a href="#grasp" className="px-4 py-2 text-black hover:bg-gray-100" onClick={() => { setOpen(false); setActive('#grasp') }}>G.R.A.S.P.</a>
+                <a href="#tell" className="px-4 py-2 text-black hover:bg-gray-100" onClick={() => { setOpen(false); setActive('#tell') }}>T.E.L.L.</a>
+              </div>
+            )}
+          </div>
+          <a href="#proyectos" className={linkClass('#proyectos')}>TESTIMONIALS</a>
+          <a href="#contacto" className={linkClass('#contacto')}>RESOURCES</a>
+          <a href="#contacto" className={linkClass('#contacto')}>CONTACT ME</a>
         </div>
-        <a href="#proyectos" className={linkClass('#proyectos')}>TESTIMONIALS</a>
-        <a href="#contacto" className={linkClass('#contacto')}>RESOURCES</a>
-        <a href="#contacto" className={linkClass('#contacto')}>CONTACT ME</a>
       </div>
     </nav>
   )
