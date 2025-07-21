@@ -61,18 +61,17 @@ export const Nav = () => {
   }
 
   const linkClass = (hashOrPath) =>
-    `text-white font-semibold hover:text-gray-300 transition-colors px-1 relative after:content-[''] after:block after:h-0.5 after:rounded after:bg-white after:transition-all after:duration-300 after:absolute after:left-0 after:right-0 after:bottom-0 after:scale-x-0 ${
-      isActive(hashOrPath) ? 'after:scale-x-100 after:h-0.5' : ''
+    `text-white font-semibold hover:text-gray-300 transition-colors px-1 relative after:content-[''] after:block after:h-0.5 after:rounded after:bg-white after:transition-all after:duration-300 after:absolute after:left-0 after:right-0 after:bottom-0 after:scale-x-0 ${isActive(hashOrPath) ? 'after:scale-x-100 after:h-0.5' : ''
     }`
 
   return (
     <nav
       className={`fixed w-full transition-all duration-500 z-50
-        ${scrolled ? 'top-0 bg-gray-900/90 backdrop-blur-sm py-4' : 'top-1/3 bg-transparent'}
+        ${scrolled ? 'top-0 bg-gray-900/90 backdrop-blur-sm py-4' : 'top-16 bg-transparent'}
       `}
     >
       <div className={`flex px-8 ${scrolled ? 'flex-row justify-between items-center' : 'flex-col items-start gap-3'} transition-all duration-300`}>
-        <a href="/" className={` text-white font-bold hover:text-gray-300 transition-colors ${scrolled ? 'text-2xl' : 'text-5xl'}`}>
+        <a href="/" className={` text-white font-bold hover:text-gray-300 transition-colors ${scrolled ? 'text-2xl' : 'text-5xl pb-20'}`}>
           Valentina Dimitrova, Ph.D.
         </a>
 
@@ -85,31 +84,48 @@ export const Nav = () => {
             onMouseLeave={handleMouseLeave}
           >
             <button
-              className={`text-white font-semibold hover:text-gray-300 transition-colors focus:outline-none px-1 relative after:content-[''] after:block after:h-0.5 after:rounded after:bg-white after:transition-all after:duration-300 after:absolute after:left-0 after:right-0 after:bottom-0 after:scale-x-0 ${
-                ['#openlabs','#grasp','#tell'].some(isActive) ? 'after:scale-x-100 after:h-0.5' : ''
-              }`}
+              className={`text-white font-semibold hover:text-gray-300 transition-colors focus:outline-none px-1 relative after:content-[''] after:block after:h-0.5 after:rounded after:bg-white after:transition-all after:duration-300 after:absolute after:left-0 after:right-0 after:bottom-0 after:scale-x-0 ${['#openlabs', '#grasp', '#tell'].some(isActive) ? 'after:scale-x-100 after:h-0.5' : ''}`}
               onClick={() => setOpen((prev) => !prev)}
               type="button"
             >
               OUTREACH
             </button>
+
             {open && (
-              <div className={`absolute  mt-2 w-56 bg-white rounded-md shadow-lg py-2 z-50 flex flex-col ${scrolled ? 'left-0' : 'left-40 top-0'}`}>
-                <Link to="/open-labs" className="px-4 py-2 text-black hover:bg-gray-100" onClick={() => setOpen(false)}>
+              <div
+                className={`
+                ${scrolled ? 'absolute left-0 w-60 bg-gray-600 ' : 'w-full bg-transparent'}
+                mt-2
+                rounded-xl shadow-md backdrop-blur-md
+                z-10 flex flex-col text-white text-base
+                transition-all duration-200 ease-in-out
+              `}
+              >
+                <Link
+                  to="/open-labs"
+                  className="px-5 py-3 text-white hover:bg-gray-700 transition-colors font-medium rounded-xl"
+                  onClick={() => setOpen(false)}
+                >
                   OPEN LABS AT PENN
                 </Link>
-                <Link to="/grasp" className="px-4 py-2 text-black hover:bg-gray-100" onClick={() => setOpen(false)}>
+                <Link
+                  to="/grasp"
+                  className="px-5 py-3 text-white hover:bg-gray-700 transition-colors font-medium rounded-xl"
+                  onClick={() => setOpen(false)}
+                >
                   G.R.A.S.P.
                 </Link>
-                <Link to="/tell" className="px-4 py-2 text-black hover:bg-gray-100" onClick={() => setOpen(false)}>
+                <Link
+                  to="/tell"
+                  className="px-5 py-3 text-white hover:bg-gray-700 transition-colors font-medium rounded-xl"
+                  onClick={() => setOpen(false)}
+                >
                   T.E.L.L.
                 </Link>
               </div>
             )}
           </div>
           <a href="/#testimonials" className={linkClass('/#testimonials')}>TESTIMONIALS</a>
-          {/* <a href="/#resources" className={linkClass('#resources')}>RESOURCES</a>
-          <a href="/#contact" className={linkClass('#contact')}>CONTACT ME</a> */}
         </div>
       </div>
     </nav>

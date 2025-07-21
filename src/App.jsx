@@ -8,8 +8,8 @@ import Tell from './components/Outreach/sections/tell/tell'
 function App() {
 
   return (
-  <Routes>
-    <Route path="/" element={<Home />} />
+    <Routes>
+      <Route path="/" element={<Home />} />
       <Route path="/open-labs" element={<OpenLabs />} />
       <Route path="/grasp" element={<Grasp />} />
       <Route path="/tell" element={<Tell />} />
