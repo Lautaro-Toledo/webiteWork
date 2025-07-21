@@ -14,12 +14,14 @@ import image10 from '../../../../assets/openLabs/image_18.jpg'
 import image11 from '../../../../assets/openLabs/image_21.jpg'
 import image12 from '../../../../assets/openLabs/image_22.jpg'
 import image13 from '../../../../assets/openLabs/image_23.jpg'
+import { Hero } from '../../../Home/sections/Hero/Hero';
 
 function OpenLabs() {
   return (
     <>
       <Nav />
-      <section className='pt-[120px]'>
+      <Hero />
+      <section className='pt-[120px] px-8'>
         <h1 className='mb-16 text-3xl font-medium'>Outreach: Open Labs at Penn</h1>
         <div className='w-full mb-20 flex justify-between gap-5'>
           <p className='text-lg'>
