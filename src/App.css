@@ -1,17 +1,9 @@
 @import "tailwindcss";
 
-<<<<<<< HEAD
 body {
   font-family: "Wix Madefor Display", sans-serif;
 }
 
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-=======
 html {
   scroll-behavior: smooth;
->>>>>>> 15ed41f287f774aa32fbd8beb4907e04780af01a
 }
