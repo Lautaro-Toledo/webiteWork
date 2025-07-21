@@ -56,7 +56,7 @@ export const Nav = () => {
           onMouseLeave={handleMouseLeave}
         >
           <button
-            className={`text-white font-semibold hover:text-gray-300 transition-colors focus:outline-none px-1 ${['#openlabs','#grasp','#tell'].includes(active) ? 'border-b-2 border-white' : ''}`}
+            className={`text-white font-semibold hover:text-gray-300 transition-colors focus:outline-none px-1 ${['#openlabs', '#grasp', '#tell'].includes(active) ? 'border-b-2 border-white' : ''}`}
             onClick={() => setOpen((prev) => !prev)}
             type="button"
           >
