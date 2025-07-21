@@ -40,7 +40,10 @@ export const Nav = () => {
   }
 
   // Helper para clases activas
-  const linkClass = (hash) => `text-white font-semibold hover:text-gray-300 transition-colors px-1 ${active === hash ? 'border-b-2 border-white' : ''}`
+  const linkClass = (hash) =>
+    `text-white font-semibold hover:text-gray-300 transition-colors px-1 relative after:content-[''] after:block after:h-0.5 after:rounded after:bg-white after:transition-all after:duration-300 after:absolute after:left-0 after:right-0 after:bottom-0 after:scale-x-0 ${
+      active === hash ? 'after:scale-x-100 after:h-0.5' : ''
+    }`;
 
   return (
     <nav className="fixed top-0 left-0 w-full bg-gray-900 flex items-center justify-between px-8 py-5 z-50">
@@ -48,7 +51,7 @@ export const Nav = () => {
         <a href="#home" className="text-2xl text-white font-bold hover:text-gray-300 transition-colors">Valentina Dimitrova, Ph.D.</a>
       </div>
       <div className="flex gap-8">
-        <a href="#home" className={linkClass('#home')}>PHILOSOPHY</a>
+        <a href="#philosophy" className={linkClass('#philosophy')}>PHILOSOPHY</a>
         <div
           className="relative"
           ref={dropdownRef}
@@ -56,7 +59,7 @@ export const Nav = () => {
           onMouseLeave={handleMouseLeave}
         >
           <button
-            className={`text-white font-semibold hover:text-gray-300 transition-colors focus:outline-none px-1 ${['#openlabs','#grasp','#tell'].includes(active) ? 'border-b-2 border-white' : ''}`}
+            className={`text-white font-semibold hover:text-gray-300 transition-colors focus:outline-none px-1 relative after:content-[''] after:block after:h-0.5 after:rounded after:bg-white after:transition-all after:duration-300 after:absolute after:left-0 after:right-0 after:bottom-0 after:scale-x-0 ${['#openlabs','#grasp','#tell'].includes(active) ? 'after:scale-x-100 after:h-0.5' : ''}`}
             onClick={() => setOpen((prev) => !prev)}
             type="button"
           >
