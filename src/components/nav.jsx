@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 
 export const Nav = () => {
   const [open, setOpen] = useState(false)
@@ -71,7 +72,7 @@ export const Nav = () => {
       `}
     >
       <div className={`flex px-8 ${scrolled ? 'flex-row justify-between items-center' : 'flex-col items-start gap-3'} transition-all duration-300`}>
-        <a href="#home" className={` text-white font-bold hover:text-gray-300 transition-colors ${scrolled ? 'text-2xl' : 'text-5xl'}`}>
+        <a href="/" className={` text-white font-bold hover:text-gray-300 transition-colors ${scrolled ? 'text-2xl' : 'text-5xl'}`}>
           Valentina Dimitrova, Ph.D.
         </a>
 
@@ -93,10 +94,16 @@ export const Nav = () => {
               OUTREACH
             </button>
             {open && (
-              <div className={`absolute mt-2  bg-white rounded-md shadow-lg py-2 z-50 flex flex-col ${scrolled ? 'left-0 w-56' : 'left-36 top-0 w-64'}`}>
-                <a href="#openlabs" className="px-4 py-2 text-black hover:bg-gray-100" onClick={() => { setOpen(false); setActive('#openlabs') }}>OPEN LABS AT PENN</a>
-                <a href="#grasp" className="px-4 py-2 text-black hover:bg-gray-100" onClick={() => { setOpen(false); setActive('#grasp') }}>G.R.A.S.P.</a>
-                <a href="#tell" className="px-4 py-2 text-black hover:bg-gray-100" onClick={() => { setOpen(false); setActive('#tell') }}>T.E.L.L.</a>
+              <div className={`absolute  mt-2 w-56 bg-white rounded-md shadow-lg py-2 z-50 flex flex-col ${scrolled ? 'left-0' : 'left-40 top-0'}`}>
+                <Link to="/open-labs" className="px-4 py-2 text-black hover:bg-gray-100" onClick={() => setOpen(false)}>
+                  OPEN LABS AT PENN
+                </Link>
+                <Link to="/grasp" className="px-4 py-2 text-black hover:bg-gray-100" onClick={() => setOpen(false)}>
+                  G.R.A.S.P.
+                </Link>
+                <Link to="/tell" className="px-4 py-2 text-black hover:bg-gray-100" onClick={() => setOpen(false)}>
+                  T.E.L.L.
+                </Link>
               </div>
             )}
           </div>
