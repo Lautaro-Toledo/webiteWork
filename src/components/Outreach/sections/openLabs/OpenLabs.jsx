@@ -1,5 +1,7 @@
 import React from 'react';
 import { Nav } from '../../../nav';
+import { Hero } from '../../../Home/sections/Hero/Hero';
+import persona from '../../../../assets/hero/persona.jpg';
 import CardOutreach from '../../cardOutreach';
 import image1 from '../../../../assets/openLabs/image_1.jpg'
 import image2 from '../../../../assets/openLabs/image_3.jpg'
@@ -14,15 +16,14 @@ import image10 from '../../../../assets/openLabs/image_18.jpg'
 import image11 from '../../../../assets/openLabs/image_21.jpg'
 import image12 from '../../../../assets/openLabs/image_22.jpg'
 import image13 from '../../../../assets/openLabs/image_23.jpg'
-import { Hero } from '../../../Home/sections/Hero/Hero';
 
 function OpenLabs() {
   return (
     <>
       <Nav />
-      <Hero />
-      <section className='pt-[120px] px-8'>
-        <h1 className='mb-16 text-3xl font-medium'>Outreach: Open Labs at Penn</h1>
+      <Hero img={persona} />
+      <section className='pt-[80px] px-8'>
+        <h1 className='mb-16 text-3xl font-medium text-center'>Outreach: Open Labs at Penn</h1>
         <div className='w-full mb-20 flex justify-between gap-5'>
           <p className='text-lg'>
             I started working with Open Labs at Penn during my third year in graduate school. My first involvement with this organization was as an invited speaker, presenting my thesis research in a TED-style format to an audience of local high school students and their parents. The concept was exciting, the impact was palpable, the opportunity for growth was immense… I was hooked!
