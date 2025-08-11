@@ -31,54 +31,6 @@ I value my relationship with my trainees and often see them becoming great mento
 ];
 
 export const Philosophy = () => {
-//   const [current, setCurrent] = useState(0);
-
-//   const prevSlide = () => setCurrent((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
-//   const nextSlide = () => setCurrent((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
-
-//   const slide = slides[current];
-
-//   return (
-//     <section id="philosophy" className="h-screen w-full bg-white flex items-center justify-center ">
-//       <div className="container mx-auto px-4">
-//         <h1 className="text-4xl font-bold text-gray-800 text-center mb-16">Mentoring Philosophy</h1>
-//         <div className="relative w-full flex justify-center items-center shadow-xl shadow-black/20 rounded-2xl">
-//           <button
-//             onClick={prevSlide}
-//             className="absolute -left-11 top-1/2 -translate-y-1/2 bg-gray-700 text-white rounded-full w-10 h-10 shadow hover:bg-gray-900 transition-all z-10 cursor-pointer"
-//             aria-label="Previous"
-//           >
-//             &#8592;
-//           </button>
-//           <div className={`w-full flex justify-between items-center gap-7 bg-gray-400 rounded-2xl px-10 py-5 transition-all duration-500 ${slide.imgPosition === 'left' ? 'flex-row-reverse' : 'flex-row'}`}>
-//             <div className="flex-1 flex flex-col justify-center items-center text-center">
-//               {slide.title && <h2 className="text-2xl font-bold mb-4">{slide.title}</h2>}
-//               <p className="text-xl text-left" dangerouslySetInnerHTML={{ __html: slide.text }} />
-//             </div>
-//               <img src={slide.img} alt="philosophyImg" className="h-[350px] md:h-[450px] rounded-2xl"/>
-//           </div>
-//           <button
-//             onClick={nextSlide}
-//             className="absolute -right-11 top-1/2 -translate-y-1/2 bg-gray-700 text-white rounded-full w-10 h-10 shadow hover:bg-gray-900 transition-all z-10 cursor-pointer"
-//             aria-label="Next"
-//           >
-//             &#8594;
-//           </button>
-//         </div>
-//         <div className="flex justify-center mt-6 gap-2">
-//           {slides.map((_, idx) => (
-//             <button
-//               key={idx}
-//               onClick={() => setCurrent(idx)}
-//               className={`w-3 h-3 rounded-full ${current === idx ? 'bg-gray-800' : 'bg-gray-400'} transition-all`}
-//               aria-label={`Go to slide ${idx + 1}`}
-//             />
-//           ))}
-//         </div>
-//       </div>
-//     </section>
-//   )
-// }
 
 const [currentIndex, setCurrentIndex] = useState(0);
 const autoPlayRef = useRef();

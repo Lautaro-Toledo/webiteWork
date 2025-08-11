@@ -22,7 +22,7 @@ function OpenLabs() {
     <>
       <Nav />
       <Hero img={persona} />
-      <section className='pt-[80px] px-8'>
+      <section className='pt-[80px] px-8 bg-white'>
         <h1 className='mb-16 text-3xl font-medium text-center'>Outreach: Open Labs at Penn</h1>
         <div className='w-full mb-20 flex justify-between gap-5'>
           <p className='text-lg'>

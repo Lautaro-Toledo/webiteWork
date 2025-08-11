@@ -13,7 +13,7 @@ function Tell() {
     <>
       <Nav />
       <Hero img={persona} />
-      <section className='pt-[70px] px-8'>
+      <section className='pt-[70px] px-8 bg-white'>
         <h1 className='mb-16 text-3xl font-medium text-center'>Outreach: T.E.L.L.</h1>
         <div className='w-full mb-20 flex justify-between gap-5'>
           <div>
