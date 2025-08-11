@@ -111,7 +111,7 @@ useEffect(() => {
 
 return (
   // <section className=" py-16 px-4 relative h-screen" id="philosophy">
-     <section id="philosophy" className=" h-screen w-full bg-white flex items-center justify-center px-4 ">
+     <section id="philosophy" className=" h-screen w-full  bg-white flex items-center justify-center px-4 ">
       <div>
 
     <h1 className="text-4xl font-bold text-gray-800  text-center mb-16">
@@ -136,10 +136,10 @@ return (
             <img
               src={slides[currentIndex].img}
               alt={slides[currentIndex].title}
-              className="h-[350px] md:h-[450px] w-full object-cover rounded-2xl shadow-lg"
+              className="h-[350px] md:h-[450px] w-full max-w-[337px] object-cover rounded-2xl shadow-lg"
             />
           </div>
-          <div className="w-full px-6">
+          <div className="w-full px-6 max-w-3xl" >
             <h2 className="text-2xl font-semibold mb-2">
               {slides[currentIndex].title}
             </h2>
