@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useRef, useState } from "react";
 import philosophyImgv1 from "../../../../assets/Testimonials/1.png";
 import philosophyImgv2 from "../../../../assets/Testimonials/2.png";
 import philosophyImgv3 from "../../../../assets/Testimonials/3.png";
@@ -13,6 +13,7 @@ import philosophyImgv10 from "../../../../assets/Testimonials/8.png";
 import philosophyImgv11 from "../../../../assets/Testimonials/9.png";
 import philosophyImgv12 from "../../../../assets/Testimonials/10.png";
 import philosophyImgv13 from "../../../../assets/Testimonials/11.png";
+import { TestimonialItem } from "../../components/TestimonialItem";
 
 const testimonialsData = [
   {
@@ -108,39 +109,72 @@ const testimonialsData = [
   },
 ];
 
+
+
 export const TestimonialsSection = () => {
+  const [expandedIndices, setExpandedIndices] = useState([]);
+  const previewRefs = useRef({});
+  const fullRefs = useRef({});
+
+  const [heights, setHeights] = useState({});
+
+  useEffect(() => {
+    const newHeights = {};
+    Object.keys(previewRefs.current).forEach((key) => {
+      const previewEl = previewRefs.current[key];
+      const fullEl = fullRefs.current[key];
+      if (previewEl && fullEl) {
+        newHeights[key] = {
+          previewHeight: previewEl.scrollHeight,
+          fullHeight: fullEl.scrollHeight,
+        };
+      }
+    });
+    setHeights(newHeights);
+  }, []);
+
+  const toggleExpand = (index) => {
+    setExpandedIndices(prev => {
+      if (prev.includes(index)) {
+        return prev.filter(i => i !== index);
+      } else {
+        return [...prev, index];
+      }
+    });
+  };
+
+  // Check if a testimonial is the last one
+  const isLastTestimonial = (index) => {
+    return index === testimonialsData.length - 1;
+  };
+
   return (
-    <section className="bg-gray-800 py-16 px-4" id='testimonials'> 
-      <h1 className="text-4xl font-bold text-white text-center mb-16">
-        Mentoring Philosophy
-      </h1>
+    <div>
+      <section className="bg-gray-800 py-16 px-4 h-full" id="testimonials">
+        <h1 className="text-4xl font-bold text-white text-center mb-16">
+          Mentoring Philosophy
+        </h1>
 
-      {testimonialsData.map((testimonial, index) => (
-        <div
-          key={index}
-          className={`w-full flex flex-col md:flex-row ${
-            testimonial.imgPosition === "left"
-              ? "md:flex-row"
-              : "md:flex-row-reverse"
-          } items-center gap-1 mb-20`}
-        >
-          <div className=" px-6">
-            <img
-              src={testimonial.imgSrc}
-              alt={testimonial.name}
-              className="w-full h-auto max-w-[700px] max-h-[1000px] object-cover rounded-2xl shadow-lg"
+        {testimonialsData.map((testimonial, index) => {
+          // Last testimonial is always expanded
+          const isExpanded = isLastTestimonial(index) ? true : expandedIndices.includes(index);
+          
+          return (
+            <TestimonialItem
+              key={index}
+              testimonial={testimonial}
+              index={index}
+              isExpanded={isExpanded}
+              onToggle={isLastTestimonial(index) ? undefined : toggleExpand}
+              heights={heights}
+              previewRefs={previewRefs}
+              fullRefs={fullRefs}
+              showToggleButton={!isLastTestimonial(index)}
             />
-          </div>
+          );
+        })}
 
-          <div className=" w-full text-white px-6">
-            <h2 className="text-2xl font-semibold mb-2">{testimonial.name}</h2>
-            <h3 className="text-md italic mb-4 text-gray-300">{testimonial.role}</h3>
-            <p className="text-lg text-gray-100 text-justify whitespace-pre-wrap">
-              {testimonial.content}
-            </p>
-          </div>
-        </div>
-      ))}
-    </section>
+      </section>
+    </div>
   );
 };

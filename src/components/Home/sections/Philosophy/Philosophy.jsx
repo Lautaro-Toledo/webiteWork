@@ -1,7 +1,9 @@
 import philosophyImg from "../../../../assets/philosophy/1.png";
 import philosophyImgG from "../../../../assets/philosophy/5.png";
 import philosophyImgv from "../../../../assets/philosophy/6.png";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const slides = [
   {
@@ -29,51 +31,111 @@ I value my relationship with my trainees and often see them becoming great mento
 ];
 
 export const Philosophy = () => {
-  const [current, setCurrent] = useState(0);
 
-  const prevSlide = () => setCurrent((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
-  const nextSlide = () => setCurrent((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
+const [currentIndex, setCurrentIndex] = useState(0);
+const autoPlayRef = useRef();
+const [autoPlayActive, setAutoPlayActive] = useState(true);
 
-  const slide = slides[current];
+const nextSlide = () => {
+  setCurrentIndex((prev) =>
+    prev === slides.length - 1 ? 0 : prev + 1
+  );
+};
 
-  return (
-    <section id="philosophy" className="h-screen w-full bg-white flex items-center justify-center ">
-      <div className="container mx-auto px-4">
-        <h1 className="text-4xl font-bold text-gray-800 text-center mb-16">Mentoring Philosophy</h1>
-        <div className="relative w-full flex justify-center items-center shadow-xl shadow-black/20 rounded-2xl">
-          <button
-            onClick={prevSlide}
-            className="absolute -left-11 top-1/2 -translate-y-1/2 bg-gray-700 text-white rounded-full w-10 h-10 shadow hover:bg-gray-900 transition-all z-10 cursor-pointer"
-            aria-label="Previous"
-          >
-            &#8592;
-          </button>
-          <div className={`w-full flex justify-between items-center gap-7 bg-gray-400 rounded-2xl px-10 py-5 transition-all duration-500 ${slide.imgPosition === 'left' ? 'flex-row-reverse' : 'flex-row'}`}>
-            <div className="flex-1 flex flex-col justify-center items-center text-center">
-              {slide.title && <h2 className="text-2xl font-bold mb-4">{slide.title}</h2>}
-              <p className="text-xl text-left" dangerouslySetInnerHTML={{ __html: slide.text }} />
-            </div>
-              <img src={slide.img} alt="philosophyImg" className="h-[350px] md:h-[450px] rounded-2xl"/>
-          </div>
-          <button
-            onClick={nextSlide}
-            className="absolute -right-11 top-1/2 -translate-y-1/2 bg-gray-700 text-white rounded-full w-10 h-10 shadow hover:bg-gray-900 transition-all z-10 cursor-pointer"
-            aria-label="Next"
-          >
-            &#8594;
-          </button>
-        </div>
-        <div className="flex justify-center mt-6 gap-2">
-          {slides.map((_, idx) => (
-            <button
-              key={idx}
-              onClick={() => setCurrent(idx)}
-              className={`w-3 h-3 rounded-full ${current === idx ? 'bg-gray-800' : 'bg-gray-400'} transition-all`}
-              aria-label={`Go to slide ${idx + 1}`}
+const prevSlide = () => {
+  setCurrentIndex((prev) =>
+    prev === 0 ? slides.length - 1 : prev - 1
+  );
+};
+
+const handleManualChange = (newIndex) => {
+  setCurrentIndex(newIndex);
+  setAutoPlayActive(false);
+};
+
+// Rotación automática solo si está activa
+useEffect(() => {
+  if (!autoPlayActive) return; // no hacer nada si se desactivó
+  autoPlayRef.current = setInterval(nextSlide, 5000);
+  return () => clearInterval(autoPlayRef.current);
+}, [autoPlayActive]);
+
+
+return (
+  // <section className=" py-16 px-4 relative h-screen" id="philosophy">
+     <section id="philosophy" className=" h-screen w-full  bg-white flex items-center justify-center px-4 ">
+      <div>
+
+    <h1 className="text-4xl font-bold text-gray-800  text-center mb-16">
+      Mentoring Philosophy
+    </h1>
+
+    <div className="relative w-full overflow-hidden px-6">
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={currentIndex}
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: -50 }}
+          transition={{ duration: 0.6 }}
+          className={`w-full flex flex-col md:flex-row ${
+            slides[currentIndex].imgPosition === "left"
+              ? "md:flex-row"
+              : "md:flex-row-reverse"
+          } items-center gap-1`}
+        >
+          <div className="px-6">
+            <img
+              src={slides[currentIndex].img}
+              alt={slides[currentIndex].title}
+              className="h-[350px] md:h-[450px] w-full max-w-[337px] object-cover rounded-2xl shadow-lg"
             />
-          ))}
-        </div>
+          </div>
+          <div className="w-full px-6 max-w-3xl" >
+            <h2 className="text-2xl font-semibold mb-2">
+              {slides[currentIndex].title}
+            </h2>
+            <p className="text-xl text-left" dangerouslySetInnerHTML={{ __html: slides[currentIndex].text }} />
+          </div>
+        </motion.div>
+      </AnimatePresence>
+
+      {/* Botón anterior */}
+      <button
+        onClick={() => {
+          prevSlide();
+          setAutoPlayActive(false); // desactiva autoplay al click manual
+        }}
+        className="absolute top-1/2 left-0 transform -translate-y-1/2 bg-gray-600/20 p-3 rounded-full hover:bg-gray-600/10 transition cursor-pointer"
+      >
+        <ChevronLeft className=" w-6 h-6" />
+      </button>
+
+      {/* Botón siguiente */}
+      <button
+        onClick={() => {
+          nextSlide();
+          setAutoPlayActive(false); // desactiva autoplay al click manual
+        }}
+        className="absolute top-1/2 right-0 transform -translate-y-1/2 bg-gray-600/20 p-3 rounded-full hover:bg-gray-600/10 transition cursor-pointer"
+      >
+        <ChevronRight className=" w-6 h-6" />
+      </button>
+
+      {/* Puntos de navegación */}
+      <div className="flex justify-center gap-2 mt-6">
+          {slides.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => handleManualChange(i)}
+            className={`w-3 h-3 rounded-full cursor-pointer ${
+              currentIndex === i ? "bg-gray-600/70" : "bg-gray-600/20"
+            }`}
+          />
+        ))}
       </div>
-    </section>
-  )
-}
+    </div>
+      </div>
+  </section>
+);
+};

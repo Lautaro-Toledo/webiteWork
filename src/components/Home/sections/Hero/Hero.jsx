@@ -2,7 +2,7 @@ import fondoFormulas from '../../../../assets/hero/fondo-formulas.png'
 
 export const Hero = ({ img }) => {
   return (
-    <section className="relative h-screen w-full overflow-hidden bg-gray-800">
+    <section className="relative h-screen w-full overflow-hidden bg-gray-800" id='hero'>
       {/* Imagen de la persona - como fondo */}
       <img
         src={img}
