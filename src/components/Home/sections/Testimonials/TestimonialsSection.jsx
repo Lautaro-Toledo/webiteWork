@@ -143,24 +143,38 @@ export const TestimonialsSection = () => {
     });
   };
 
-  return (
-    <section className="bg-gray-800 py-16 px-4 h-full" id="testimonials">
-      <h1 className="text-4xl font-bold text-white text-center mb-16">
-        Mentoring Philosophy
-      </h1>
+  // Check if a testimonial is the last one
+  const isLastTestimonial = (index) => {
+    return index === testimonialsData.length - 1;
+  };
 
-      {testimonialsData.map((testimonial, index) => (
-        <TestimonialItem
-          key={index}
-          testimonial={testimonial}
-          index={index}
-          isExpanded={expandedIndices.includes(index)}
-          onToggle={toggleExpand}
-          heights={heights}
-          previewRefs={previewRefs}
-          fullRefs={fullRefs}
-        />
-      ))}
-    </section>
+  return (
+    <div>
+      <section className="bg-gray-800 py-16 px-4 h-full" id="testimonials">
+        <h1 className="text-4xl font-bold text-white text-center mb-16">
+          Mentoring Philosophy
+        </h1>
+
+        {testimonialsData.map((testimonial, index) => {
+          // Last testimonial is always expanded
+          const isExpanded = isLastTestimonial(index) ? true : expandedIndices.includes(index);
+          
+          return (
+            <TestimonialItem
+              key={index}
+              testimonial={testimonial}
+              index={index}
+              isExpanded={isExpanded}
+              onToggle={isLastTestimonial(index) ? undefined : toggleExpand}
+              heights={heights}
+              previewRefs={previewRefs}
+              fullRefs={fullRefs}
+              showToggleButton={!isLastTestimonial(index)}
+            />
+          );
+        })}
+
+      </section>
+    </div>
   );
 };

@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 
 
-export const TestimonialItem = ({ testimonial, index, isExpanded, onToggle, heights, previewRefs, fullRefs }) => {
+export const TestimonialItem = ({ testimonial, index, isExpanded, onToggle, heights, previewRefs, fullRefs, showToggleButton = true }) => {
   const imageRef = useRef(null);
   const isImageInView = useInView(imageRef, { 
     once: true, 
@@ -16,7 +16,7 @@ export const TestimonialItem = ({ testimonial, index, isExpanded, onToggle, heig
 
   return (
     <div
-      className={`w-full flex flex-col justify-center md:flex-row ${
+      className={`w-full flex flex-col justify-center md:flex-row  ${
         testimonial.imgPosition === "left"
           ? "md:flex-row"
           : "md:flex-row-reverse"
@@ -84,13 +84,16 @@ export const TestimonialItem = ({ testimonial, index, isExpanded, onToggle, heig
           </p>
         </motion.div>
 
-        <button
-          onClick={() => onToggle(index)}
-          className="mt-3 text-sm text-blue-400 hover:text-blue-600 font-semibold transition cursor-pointer"
-          aria-label={isExpanded ? "Lear less" : "Lear more"}
-        >
-          {isExpanded ? "Lear less" : "Lear more"}
-        </button>
+        {/* Solo mostrar el botón si showToggleButton es true */}
+        {showToggleButton && (
+          <button
+            onClick={() => onToggle(index)}
+            className="mt-3 text-sm text-blue-400 hover:text-blue-600 font-semibold transition cursor-pointer"
+            aria-label={isExpanded ? "Lear less" : "Lear more"}
+          >
+            {isExpanded ? "Lear less" : "Lear more"}
+          </button>
+        )}
       </div>
     </div>
   );
