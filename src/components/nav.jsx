@@ -95,7 +95,7 @@ export const Nav = () => {
         } transition-all duration-300`}
       >
         <motion.a
-          href="/"
+          href="/#hero"
           className={`text-white font-bold hover:text-gray-300 transition-colors cursor-pointer`}
           animate={{
             fontSize: scrolled ? "1.5rem" : "3rem", // text-2xl vs text-5xl
