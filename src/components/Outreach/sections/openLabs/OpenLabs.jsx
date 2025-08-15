@@ -3,7 +3,7 @@ import { Nav } from '../../../nav';
 import { Hero } from '../../../Home/sections/Hero/Hero';
 import { motion } from 'framer-motion';
 import persona from '../../../../assets/hero/persona.jpg';
-import CardOutreach from '../../cardOutreach';
+import CardOutreach from '../../CardOutreach';
 import image1 from '../../../../assets/openLabs/image_1.jpg'
 import image2 from '../../../../assets/openLabs/image_3.jpg'
 import image3 from '../../../../assets/openLabs/image_20.jpg'
