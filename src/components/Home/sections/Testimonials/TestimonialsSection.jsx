@@ -1,0 +1,180 @@
+import React, { useEffect, useRef, useState } from "react";
+import philosophyImgv1 from "../../../../assets/Testimonials/1.png";
+import philosophyImgv2 from "../../../../assets/Testimonials/2.png";
+import philosophyImgv3 from "../../../../assets/Testimonials/3.png";
+import philosophyImgv4 from "../../../../assets/Testimonials/4.png";
+import philosophyImgv5 from "../../../../assets/Testimonials/5.png";
+
+import philosophyImgv6 from "../../../../assets/Testimonials/6.png";
+import philosophyImgv7 from "../../../../assets/Testimonials/7.png";
+import philosophyImgv8 from "../../../../assets/Testimonials/14.png";
+import philosophyImgv9 from "../../../../assets/Testimonials/13.png";
+import philosophyImgv10 from "../../../../assets/Testimonials/8.png";
+import philosophyImgv11 from "../../../../assets/Testimonials/9.png";
+import philosophyImgv12 from "../../../../assets/Testimonials/10.png";
+import philosophyImgv13 from "../../../../assets/Testimonials/11.png";
+import { TestimonialItem } from "../../components/TestimonialItem";
+
+const testimonialsData = [
+  {
+    name: "Alexandra Karagiaridi",
+    role: "PhD student, Pinkett Lab",
+    content: `I am a big believer that people learn better through collaboration, sharing, and open communication that are all integral parts of good mentorship. For me good mentorship matters because it allows me to communicate openly and safely my thoughts and receive feedback in real time that most of the times informs my next steps, whether that is in the context of planning an experiment, writing an abstract or paper, or preparing slides for a talk. Val was my mentor during my rotation in Dr. Heather Pinkett’s lab in the Spring Quarter of 2022. At that time, I was a 1st year graduate student in the IBiS program, doing quarterly rotations to choose a thesis lab. A couple sentences are truly not enough to put into words how immensely impactful, helpful, pivotal, and influential Val has been for my personal and professional growth both inside and outside the laboratory. Even from the very beginning, she has always been open, patient, and eager to answer my questions and help me with interpreting experimental results that would inform our next steps in the project. She never undermined my contributions or ideas, and challenged me where necessary, while acknowledging and celebrating my achievements. Her mentorship approach especially during my rotation, at a time when I was still learning the techniques and familiarizing myself with the project goals, was one of the main reasons why I ended up joining the lab, because I could see myself growing further into a stronger scientist and a more well-rounded individual by surrounding myself with lab mates and mentors like Val.. I also believe that people learn better through being challenged and pushed to think outside the box. Val is really amazing at challenging her mentees in a way that keeps them comfortable but allows them to step into unfamiliar territory and navigate it, so they raise to the occasion. Val’s questions like “What does this mean?”, “Is this what you expected?” or “Based on these results, how would you proceed next?” are ways in which she has challenged me to think constructively and become more confident in myself. Val embodies a sincere desire to help when applicable, and I think this is the one quality I resonate with the most. Val will challenge you, but she will also exhibit a lot of understanding if you are navigating tough times or are feeling stuck with experiments. A big testimonial to that is her willingness and eagerness to understand nuances of my thesis project and suggest potential avenues and ideas even though they are not part of her main duties. Another mentor quality Val embodies is her ability to actively listen and devote her full attention to the matter that you have brought to her, whether it entails advice, reassurance or a concern. Even a simple “Hey Val, can I get your thoughts on these gel results?” or “I am thinking of doing this experiment, but these are my concerns …” will result in Val setting the time aside to listen to you in detail, ask thoughtful questions that initiate an interesting discussion that you walk away from more certain than before and like you learned something. From rotating in the lab to now, all my interactions and experiences with Val have been so pleasant and informative. Learning from Val is probably one of the greatest memories I can think of having in the lab, filled with so much powerful knowledge based on theory and her personal experiences, laughter, a sense of security that makes room for mistakes that you can learn from, and respect for one another despite her more senior position to mine.   `,
+    imgSrc: philosophyImgv1, // cambia esto al path correcto
+    imgPosition: "left",
+  },
+  {
+    name: "Citlayi Villaseñor",
+    role: "PhD student, Kamat Lab",
+    content: `I believe having mentors who care about my well-being, success, and personal development have helped shape me as a more kind, compassionate, and motivated scientist. Feeling like I am part of a community with shared goals and values also helps me feel safer learning and improving my skills. Valentina is one of my postdoc mentors in our collaborator’s laboratory, Heather Pinkett’s group, and she has mentored me with experiments, planning experiments, and discussing results. During the time she has mentored me I’ve been a graduate student, and my career goals are still to continue in academic spaces as a researcher and teacher. Valentina has been supportive through her willingness to have one-on-one meetings to discuss my projects, sharing and demonstrating her knowledge with purifying proteins, and sharing her knowledge with biochemical tests such as ATPase activity assays. She has always been open to discussing topics that she has a deep understanding of and answering many questions that I’ve had throughout our time working together. Valentina challenged me by emphasizing the importance of recording thorough notes for protocols as well as staying flexible as experiments change direction. Valentina also challenged me by coming up with alternative explanations and possibilities for results that we were observing in our experiments. I felt Valentina had a sincere desire to help me and support me as she shared new methods and protocols with me. She would always meet with me when I had questions about these procedures and show her willingness to teach me by making time during her already busy schedule. Valentina was also always flexible and thinking on her toes as she would often come up with solutions to problems by reading in the literature or reaching out to her previous mentors as well. Working with and learning from Valentina was very beneficial and she taught me a lot about how to be a thoughtful, organized, and supportive scientist to others. She has devoted time to learning how to become a better mentor as well and our discussions on this topic through an online learning community were always helpful and insightful as well. Valentina has a lot of wisdom and care to share with other scientists, and I am grateful to have known her and to be mentored by her during my PhD.`,
+    imgSrc: philosophyImgv2,
+    imgPosition: "right",
+  },
+  {
+    name: "Lydia Kenney",
+    role: "PhD student, Pinkett Lab",
+    content: `Good mentorship is the foundation of a healthy and productive research environment. Mentorship allows the mentors and mentees to grow and advance in ways that they could not alone. Val became my mentor during my first year of graduate school when I was in the process of selecting my thesis lab. At the time I knew I wanted to be a structural biologist/biochemist and I was looking for a lab that would allow me to achieve these goals. Val taught me many of the techniques and background knowledge necessary for my research project. She supported me by showing me patience when I needed to learn new techniques and always encouraged me in the lab, even when I made mistakes. Val showed me new ways to multi-task and be more productive as a scientist, which pushed me to be a better lab member and graduate student. She taught me that there is always a more efficient way to complete a task, which challenged me and continues to influence the way I approach my work. Val has an exceptional ability to see solutions and opportunities, and encourages those around her to find more efficient and sustainable ways to conduct research. Val also has a sincere desire to help, and often took time out of her schedule to help edit my writing for applications and to help me with experiments. Learning from Val has made me a better scientist and person overall. Her enthusiasm for science and mentoring inspires me and motivates me to become a better student.`,
+    imgSrc: philosophyImgv3,
+    imgPosition: "left",
+  },
+  {
+    name: "Miriam Mei",
+    role: "Rising Senior at NU / Data Science Intern",
+    content: `Good mentorship matters to me because it can help shape and determine my career trajectory. With great mentorship, it becomes much easier to feel more compelled and passionate to pursue a specific field. Aside from that, great mentorship begets great mentorship – a great mentor inspires me to become a great mentor as well. I met Val during the summer of my freshman year (rising sophomore) as a fresh undergraduate. During this time, I was planning on pursuing a career in medicine (on the pre-medical track) working at the Pinkett Lab under Val’s mentorship. Val was incredibly supportive and responsive to questions that I raised whenever I needed help. She helped guide my summer research project and goals and was instrumental in helping me during the problem-solving process whenever I needed it. Aside from answering my questions whenever I asked, Val challenged me by encouraging me to think outside the box about different solutions that I could think of. She also encouraged me to be more proactive in working on other lab-specific tasks that could aid in everyone else’s experiments. As a mentor, she showed deep respect for my inexperience by being encouraging and always answering my questions. I never felt like my career stage was looked down upon while I was receiving her mentorship. Val helped me problem-solve whenever I was at a standpoint of my project that seemed difficult to progress at. It felt great learning from Val. Though I ultimately did not end up pursuing a career in biology or medicine, Val’s guidance was tremendous in helping me figure out what my career trajectory could look like.`,
+    imgSrc: philosophyImgv4,
+    imgPosition: "right",
+  },
+  {
+    name: "Vir Patel",
+    role: "Med Student, Stritch School of Medicine",
+    content: `To me mentorship is defined by someone willing to meet you where you are and help guide you to where you want to go. That a good mentor is as invested in your success as you are and is willing to utilize their knowledge to help you achieve your goals. When I joined the lab of Dr. Heather Pinkett in the winter of 2022, I saw research as a piece of a successful medical school application, not realizing the journey I would be embarking on. With zero research experience, learning a multitude of nuanced research techniques, the biochemical background of our experiments, and the day-to-day lab operations proved extremely challenging. Yet, with the guidance of my postdoc mentor, Val, I began to overcome these preliminary difficulties as I shadowed her experiments and performed said experiments under her watchful eye. Still, by the summer of 2022, Val believed I would only be able to realize my full research potential by performing independent research. Being given the responsibility over my own independent research project was initially daunting as the project's success relied solely on my work and aptitude which I felt I had not yet developed. Afraid of making mistakes, wasting resources, and ruining equipment, I would ask Val many questions. However, after a few weeks, Val set up a meeting with me and explained how my array of questions was limiting my ability to grow as a researcher, while listening to my concerns. Together, we came up with a solution where I would limit the number of questions I could ask in a day, aiding my development as a researcher by forcing me to choose the questions that truly required Val’s support versus questions where I could find solutions myself. By having Val create this “independence” for me, I was able to learn from my many experimental failures, scientific literature, and tailored questions I would ask Val and the other lab members, eventually leading to my experimental success, an award-winning senior thesis (Emanuel Margoliash Prize for Basic Research), and my acceptance to the Loyola University Chicago Stritch School of Medicine. Being mentored by Val helped spur my development not only as a researcher, but as a life-long learner and person as she continually pushed me to find my limits and gave me the confidence to exceed the expectations I had for myself. Val’s care about not only my work, but my goals and my personal development, are attributes I will continue to appreciate about my time in the Pinkett lab, and will continue to look for in all my future mentors as I continue my academic journey.`,
+    imgSrc: philosophyImgv5,
+    imgPosition: "left",
+  },
+  {
+    name: "Jake Trick",
+    role: "post-bacc fellow at NIH",
+    content: `To me mentorship is defined by someone willing to meet you where you are and help guide you to where you want to go. That a good mentor is as invested in your success as you are and is willing to utilize their knowledge to help you achieve your goals. When I joined the lab of Dr. Heather Pinkett in the winter of 2022, I saw research as a piece of a successful medical school application, not realizing the journey I would be embarking on. With zero research experience, learning a multitude of nuanced research techniques, the biochemical background of our experiments, and the day-to-day lab operations proved extremely challenging. Yet, with the guidance of my postdoc mentor, Val, I began to overcome these preliminary difficulties as I shadowed her experiments and performed said experiments under her watchful eye. Still, by the summer of 2022, Val believed I would only be able to realize my full research potential by performing independent research. Being given the responsibility over my own independent research project was initially daunting as the project's success relied solely on my work and aptitude which I felt I had not yet developed. Afraid of making mistakes, wasting resources, and ruining equipment, I would ask Val many questions. However, after a few weeks, Val set up a meeting with me and explained how my array of questions was limiting my ability to grow as a researcher, while listening to my concerns. Together, we came up with a solution where I would limit the number of questions I could ask in a day, aiding my development as a researcher by forcing me to choose the questions that truly required Val’s support versus questions where I could find solutions myself. By having Val create this “independence” for me, I was able to learn from my many experimental failures, scientific literature, and tailored questions I would ask Val and the other lab members, eventually leading to my experimental success, an award-winning senior thesis (Emanuel Margoliash Prize for Basic Research), and my acceptance to the Loyola University Chicago Stritch School of Medicine. Being mentored by Val helped spur my development not only as a researcher, but as a life-long learner and person as she continually pushed me to find my limits and gave me the confidence to exceed the expectations I had for myself. Val’s care about not only my work, but my goals and my personal development, are attributes I will continue to appreciate about my time in the Pinkett lab, and will continue to look for in all my future mentors as I continue my academic journey.`,
+    imgSrc: philosophyImgv6,
+    imgPosition: "right",
+  },
+  {
+    name: "Caroline Bond",
+    role: "PhD Student, Meade Lab",
+    content: `Good mentorship is important to not only help train the next generation of scientists, but it helps to build and foster my self confidence in my skillset, capabilities, and knowledge. A positive mentor can make all the difference in sparking a future passion by drawing interest into a particular field of study. I had the opportunity to have Val as my mentor for ten weeks during one of my lab rotations during my first year of my PhD program (Winter 2023). At the time, I had very little experience with structural biology techniques, such as protein purification and protein crystallization but was interested in such processes, as well as getting to learn about the Pinkett lab and associated culture. Val was a great resource of knowledge, answering my questions and clearing up any confusion that arose in lab. I use many of the skills that she taught me in my current lab and in my thesis research still today.  While she was a great teacher, she also knew how to push me towards further scientific independence, both intellectually and practicality. For example, as the ten weeks progressed, I was able to take more ownership of the project through choosing initial crystallography screens, evaluating individual characteristics for crystallization, and deciding upon next steps for the project. One of the essential qualities Val embodies is flexibility as seen by her ability to adapt to unexpected research project results calmly and professionally with little frustration. Additionally, she exhibits respect towards all of her colleagues in lab and mentees, making each individual feel valued in the work environment. `,
+    imgSrc: philosophyImgv7,
+    imgPosition: "left",
+  },
+  {
+    name: "Anika Marand",
+    role: "PhD student, Lane Lab",
+    content: `Good mentorship matters to me because it fosters intellectual growth and helps build confidence through meaningful and supportive feedback. Effective mentorship not only supports personal and professional development but fosters opportunities for critical thinking and curiosity. I met Valentina during my first year as a graduate student when rotating in the Pinkett lab at Northwestern University. The research in this lab challenged me, as I had no prior experience in the field of structural biology. With limited background in the techniques, protocols, and instruments used in the lab, Valentina’s mentorship during my rotation was invaluable in helping me learn and adapt quickly in this field. She took the time to step through all the steps for protein purification, which was one of the primary techniques I learned during my rotation. She supported my growth by providing opportunities for independent work and allowing me to learn from my mistakes. Working with a notoriously difficult protein to purify, I learned through her mentorship how to troubleshoot problems, which significantly strengthened my critical thinking skills. Throughout my rotation, Valentina consistently demonstrated a sincere and natural desire to support not only me but also other graduate students in the lab. Her willingness to help others seemed effortless, reflecting her genuine character and collaborative spirit. Her ability to actively listen to others' research and offer insightful solutions was a quality I aspired to develop as I progressed toward becoming a more experienced researcher. My experience learning from Valentina continues to shape how I approach mentorship today, which I aim to embody when working with the next generation of graduate students.`,
+    imgSrc: philosophyImgv8,
+    imgPosition: "right",
+  },
+  {
+    name: "Brittany Johnson",
+    role: "PhD student, NU",
+    content: `Good mentorship matters to me because it shapes not just scientific skills, but also confidence, perspective, and resilience. Dr. Valentina Dimitrova mentored me when I was a rotation student in the Pinkett Lab. At that time, I was focused on building both technical skills and deciding what field I wanted to focus on. She was consistently generous with her time and gave thoughtful feedback that helped me to improve my work. She also supported me by meeting weekly to discuss potential experiments and talk about the rationale of the project. She embodied flexibility and the ability to see solutions and opportunities— Valentina was open to changing directions when experiments didn’t work and helped me recognize when an unexpected result might lead somewhere interesting. Learning from Valentina felt structured and productive—we moved projects forward efficiently and accomplished a lot in a short time. `,
+    imgSrc: philosophyImgv9,
+    imgPosition: "left",
+  },
+  {
+    name: "Melina Gyparaki",
+    role: "scientist manager at Vertex Pharma",
+    content: `Good mentorship is important because it allows one to lead by example. Both in my professional career but also during my student years, I’ve always looked up to my mentors for advice but also considered them examples of how I want to advance. Valentina was a great mentor to me during graduate school when I was part of the organization Open Labs at Penn, that she was leading. At the time, my main aspiration was to obtain more experience doing science outreach as I wanted to build skills in science communication which was a career path I was considering to explore after grad school. Valentina was extremely supportive right from when I joined Open Labs at Penn. What I always admired about her was her creativity and the constant flow of ideas she had. She is very organized and everything we did at Open Labs was always executed with so much attention to detail thanks to Valentina’s support. Working with Valentina at Open Labs was a pleasure. I learned a lot from her and was challenged by her to think creatively and to be more confident in my skills. Valentina truly embodied empathy and ability to see solutions and opportunities. Valentina is a problem solver and a creative and empathetic thinker. Thanks to her, we had the opportunity to do amazing events with Open Labs that truly impacted the students positively. I am very grateful to have learned from Valentina’s mentorship during graduate school. Beyond Open Labs, she was an exemplary graduate student and someone I’ve always looked up to.`,
+    imgSrc: philosophyImgv10,
+    imgPosition: "right",
+  },
+  {
+    name: "Yekaterina Kori Perez",
+    role: "Associate Scientific Director at Precision AQ",
+    content: `Good mentorship is critical because it can greatly influence the trajectory of a person’s interests and/or career. Good mentorship also helps support mentees that may be facing challenges, whether they be academic or personal. Valentina was a teaching assistant for a biophysics course that I took early on in my PhD training journey. At the time, I was taking courses for my PhD and rotating in different laboratories, trying to figure out which lab I wanted to do thesis work in. Valentina was always available to answer any questions that I had on both the biophysics course but also on the PhD journey at Penn in general, offering advice from her experience but also listening attentively to my thoughts. She helped shape the base of my PhD career and fostered a supportive and friendly environment by understanding the importance of taking a mental break, welcoming students to her home to play with her puppy. I appreciate that Valentina taught not just by explaining but by doing, by providing additional biophysics practice questions that challenged me to test my understanding from class and from her additional explanations. While I was pretty sure I knew which thesis lab I wanted to join, she also advised me to choose rotation labs that complimented each other and developed different laboratory skills, which challenged me to choose laboratories I may not have originally considered. Valentina’s sincere desire to help others is evident by her choice to give back to other students and share her expertise as a teaching assistant, even though it was not a requirement of the Penn Biochemistry and Molecular Biophysics program to work as a teaching assistant. Whenever I had a question or concern, I felt heard and supported by Valentina because she would listen, validate any concerns, and offer appropriate advice or solutions that we could achieve together, depending on the question. Physics has never been very intuitive for me, but Valentina explained concepts in a way that was digestible and approachable. Her own interest in biophysics was clear in the way she taught, which made learning from her more fun. Overall, I greatly appreciate Valentina’s mentorship at Penn as she helped shape my PhD journey.`,
+    imgSrc: philosophyImgv11,
+    imgPosition: "left",
+  },
+  {
+    name: "Helen Li",
+    role: "Tufts University,2023 / Software Engineer at Datadog",
+    content: `Mentorship matters to me because it helps me feel genuinely supported. A good mentor guides me, helps me navigate the unknown, and sees potential in me, even when I don't fully see it myself. That kind of belief and direction makes a real difference in how I grow and show up for others. Valentina was my mentor and coach for my science fair project back in high school, and she truly shaped the way I see science and mentorship. She shared her scientific knowledge with us, helped us gain real exposure to the field, and showed us what it looks like to be a successful woman in science. Every week, she met with our team to review our science reports and gave us direct, thoughtful feedback on how to think and work like real scientists. She went above and beyond by curating lessons that explored topics related to our project, introducing us to new resources and events, and teaching us how to read and analyze scientific articles. Thanks to her guidance, support, and belief in us, we went on to win multiple science fairs. More importantly, she became a role model for me. She was an incredible mentor to have in life. Valentina was incredibly supportive in many ways. She shared a wide range of resources, not just in science, but also in writing and essential life skills. She taught me the full life cycle of being a scientist, from forming hypotheses to communicating results effectively. During our weekly meetings, she didn’t just review my work, but also she helped me grow by pointing out how to improve and explaining why it mattered. Valentina challenged me to think outside the box and encouraged me to work through problems on my own, which helped me build confidence in my critical thinking skills. She pushed me to aim higher and enabled me to grow beyond what I thought I was capable of because she saw potential in me. Valentina mentored me and two of my classmates out of the generosity of her heart, genuinely wanting to support more women in science and helping us overcome imposter syndrome. She gave us space to share our ideas and made us feel truly heard. Even as an expert she valued our input and helped us build confidence in our own voices. Learning from Valentina felt like having a supportive figure who genuinely cared about helping me grow and saw the potential in me and others. She created a space where I felt comfortable being curious, making mistakes, and learning without fear of judgment. `,
+    imgSrc: philosophyImgv12,
+    imgPosition: "right",
+  },
+  {
+    name: "Yasmine Mezoury",
+    role: "University of Pennsylvania,2024 / Public Information Specialist at WHYY",
+    content: `I approached Valentina during my sophomore year of high school at a research presentation at the University of Pennsylvania, seeking a mentor for my first science fair project. As the eldest daughter of Moroccan immigrants, I lacked the resources for navigating academia but had an immense passion for scientific research, despite my teachers telling me my aspirations were implausible. Valentina never discouraged my ideas, no matter how naive they seemed. As an immigrant herself, she served as an aspirational figure who showed me that a future in research was genuinely possible. She taught me how to conduct academic research according to lab standards and helped me design experiments and presentations. For two years, she worked on this passion project with me, attending every competition and presentation, even when my parents couldn't make it. While she was deeply supportive, Valentina also maintained college-level standards for my research. She taught me lessons on grammar and writing to ensure my lab reports met academic quality and scheduled weekly meetings to keep me on track. Her guidance ultimately helped me win an award at the state level. When I first approached her at the UPenn event, I expected to be turned away like I had been by every other academic there. However, she didn't hesitate to step in as a mentor, as if she had been waiting for an opportunity to give back. She was deeply committed to expanding my opportunities, organizing a trip with her other mentees and me to Yale University for a research symposium. Working with Valentina, I felt like I was truly understood. As a fellow immigrant, she grasped the unique challenges of pursuing academia without the institutional knowledge and resources that others take for granted. Our relationship has grown into a lifelong bond that extends far beyond academics—I was even honored to attend her wedding. Her mentorship fundamentally transformed what I believed was possible for my future.`,
+    imgSrc: philosophyImgv13,
+    imgPosition: "left",
+  },
+];
+
+
+
+export const TestimonialsSection = () => {
+  const [expandedIndices, setExpandedIndices] = useState([]);
+  const previewRefs = useRef({});
+  const fullRefs = useRef({});
+
+  const [heights, setHeights] = useState({});
+
+  useEffect(() => {
+    const newHeights = {};
+    Object.keys(previewRefs.current).forEach((key) => {
+      const previewEl = previewRefs.current[key];
+      const fullEl = fullRefs.current[key];
+      if (previewEl && fullEl) {
+        newHeights[key] = {
+          previewHeight: previewEl.scrollHeight,
+          fullHeight: fullEl.scrollHeight,
+        };
+      }
+    });
+    setHeights(newHeights);
+  }, []);
+
+  const toggleExpand = (index) => {
+    setExpandedIndices(prev => {
+      if (prev.includes(index)) {
+        return prev.filter(i => i !== index);
+      } else {
+        return [...prev, index];
+      }
+    });
+  };
+
+  // Check if a testimonial is the last one
+  const isLastTestimonial = (index) => {
+    return index === testimonialsData.length - 1;
+  };
+
+  return (
+    <div>
+      <section className="bg-gray-800 py-16 px-4 h-full" id="testimonials">
+        <h1 className="text-4xl font-bold text-white text-center mb-16">
+          Mentoring Philosophy
+        </h1>
+
+        {testimonialsData.map((testimonial, index) => {
+          // Last testimonial is always expanded
+          const isExpanded = isLastTestimonial(index) ? true : expandedIndices.includes(index);
+          
+          return (
+            <TestimonialItem
+              key={index}
+              testimonial={testimonial}
+              index={index}
+              isExpanded={isExpanded}
+              onToggle={isLastTestimonial(index) ? undefined : toggleExpand}
+              heights={heights}
+              previewRefs={previewRefs}
+              fullRefs={fullRefs}
+              showToggleButton={!isLastTestimonial(index)}
+            />
+          );
+        })}
+
+      </section>
+    </div>
+  );
+};
