@@ -2,7 +2,7 @@ import './App.css'
 import { Routes, Route } from 'react-router-dom'
 import { Home } from './page/Home'
 import OpenLabs from './components/Outreach/sections/openLabs/OpenLabs'
-import Grasp from './components/Outreach/sections/grasp/grasp'
+import Grasp from './components/Outreach/sections/grasp/Grasp'
 import Tell from './components/Outreach/sections/tell/Tell'
 import { useScrollToTop } from './components/useScrollToTop'
 
