@@ -152,7 +152,7 @@ export const TestimonialsSection = () => {
     <div>
       <section className="bg-gray-800 py-16 px-4 h-full" id="testimonials">
         <h1 className="text-4xl font-bold text-white text-center mb-16">
-          Mentoring Philosophy
+          Testimonials
         </h1>
 
         {testimonialsData.map((testimonial, index) => {
