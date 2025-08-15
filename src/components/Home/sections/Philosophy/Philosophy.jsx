@@ -1,141 +1,86 @@
+import React from "react";
+import { motion } from "framer-motion";
 import philosophyImg from "../../../../assets/philosophy/1.png";
-import philosophyImgG from "../../../../assets/philosophy/5.png";
-import philosophyImgv from "../../../../assets/philosophy/6.png";
-import React, { useEffect, useRef, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-
-const slides = [
-  {
-    text: `Great mentorship is important to me, because it can make the difference between someone giving up on her dreams or doubling down on her ambitions. A good mentor understands the universal fear of failure and the damage this fear can do to learning and growth. In the research lab, where trial and error are the fundamental tools of discovery, trainees can often find themselves overwhelmed or discouraged and rush to feed their existing self-doubts with examples of failed scientific experiments. We can’t let that happen, can we? </br>
-    In my learning environments, I aim to establish trust and maintain communication. We talk about goals, roadblocks and resources, and we map out our strategy. This is as true when I meet a mentee for the first time, as it is when I have worked with someone for years. A trainee’s goals or circumstances can change, and she should always feel comfortable to come by and negotiate a new route forward. It is a mentor’s job to always know what motivates her mentees and work with that knowledge to help them move forward.`,
-    imgPosition: 'right',
-    title: null,
-    img: philosophyImg
-  },
-  {
-    text: `My mentees tend to walk away with a bag of skills that includes technical expertise, time-management strategies, resourcefulness, improved science communication skills and intellectual independence. While I want my trainees to feel comfortable in my presence, I always challenge them to get out of their comfort zones and keep learning. I see myself as an island that they can swim back to for feedback and advice, before swimming off to find out how far their own skills will get them now.
-</br>
-I value my relationship with my trainees and often see them becoming great mentors themselves, using similar strategies to the ones I have taught them. It is exhilarating to realize time and time again that we are all here trying to understand intriguing natural phenomena, as much as we are all here to understand each other and lift each other up! 
-`,
-    imgPosition: 'left',
-    title: null,
-    img: philosophyImgG
-  },
-  {
-    text: `Whether it was your first day in the lab and you ran your gel in reverse, or you poured all your expertise, heart and soul into an experiment and saw a flat line, you are not alone on your uphill road towards scientific excellence. If you stay passionate, motivated and connected with your mentors, you will soon learn that all the obstacles were just opportunities to keep improving your skills. Welcome the challenges, embrace the unknown, utilize your resources and always remember: We’re in this together!`,
-    imgPosition: 'right',
-    title: 'Pick-me-ups',
-    img: philosophyImgv
-  }
-];
 
 export const Philosophy = () => {
-
-const [currentIndex, setCurrentIndex] = useState(0);
-const autoPlayRef = useRef();
-const [autoPlayActive, setAutoPlayActive] = useState(true);
-
-const nextSlide = () => {
-  setCurrentIndex((prev) =>
-    prev === slides.length - 1 ? 0 : prev + 1
-  );
-};
-
-const prevSlide = () => {
-  setCurrentIndex((prev) =>
-    prev === 0 ? slides.length - 1 : prev - 1
-  );
-};
-
-const handleManualChange = (newIndex) => {
-  setCurrentIndex(newIndex);
-  setAutoPlayActive(false);
-};
-
-// Rotación automática solo si está activa
-useEffect(() => {
-  if (!autoPlayActive) return; // no hacer nada si se desactivó
-  autoPlayRef.current = setInterval(nextSlide, 5000);
-  return () => clearInterval(autoPlayRef.current);
-}, [autoPlayActive]);
-
-
-return (
-  // <section className=" py-16 px-4 relative h-screen" id="philosophy">
-     <section id="philosophy" className=" h-screen w-full  bg-white flex items-center justify-center px-4 ">
-      <div>
-
-    <h1 className="text-4xl font-bold text-gray-800  text-center mb-16">
-      Mentoring Philosophy
-    </h1>
-
-    <div className="relative w-full overflow-hidden px-6">
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={currentIndex}
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: -50 }}
+  return (
+    <section id="philosophy" className="min-h-screen w-full bg-white flex items-center justify-center px-4 py-16">
+      <div className="max-w-7xl w-full mx-auto">
+        <motion.h1 
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className={`w-full flex flex-col md:flex-row ${
-            slides[currentIndex].imgPosition === "left"
-              ? "md:flex-row"
-              : "md:flex-row-reverse"
-          } items-center gap-1`}
+          className="text-4xl md:text-5xl font-bold text-gray-800 text-center mb-12 md:mb-16"
         >
-          <div className="px-6">
-            <img
-              src={slides[currentIndex].img}
-              alt={slides[currentIndex].title}
-              className="h-[350px] md:h-[450px] w-full max-w-[337px] object-cover rounded-2xl shadow-lg"
-            />
-          </div>
-          <div className="w-full px-6 max-w-3xl" >
-            <h2 className="text-2xl font-semibold mb-2">
-              {slides[currentIndex].title}
-            </h2>
-            <p className="text-xl text-left" dangerouslySetInnerHTML={{ __html: slides[currentIndex].text }} />
-          </div>
-        </motion.div>
-      </AnimatePresence>
+          Mentoring Philosophy
+        </motion.h1>
 
-      {/* Botón anterior */}
-      <button
-        onClick={() => {
-          prevSlide();
-          setAutoPlayActive(false); // desactiva autoplay al click manual
-        }}
-        className="absolute top-1/2 left-0 transform -translate-y-1/2 bg-gray-600/20 p-3 rounded-full hover:bg-gray-600/10 transition cursor-pointer"
-      >
-        <ChevronLeft className=" w-6 h-6" />
-      </button>
+        <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-start md:items-center">
+          {/* Mobile: Image on top, Desktop: Text left (60%), Image right (40%) */}
+          
+          {/* Text Column */}
+          <motion.div 
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="w-full md:w-3/5 order-2 md:order-1"
+          >
+            <div className="space-y-6 text-gray-700">
+              <p className="text-lg leading-relaxed">
+                Great mentorship is important to me, because it can make the difference between someone 
+                giving up on her dreams or doubling down on her ambitions. A good mentor understands the 
+                universal fear of failure and the damage this fear can do to learning and growth. In the 
+                research lab, where trial and error are the fundamental tools of discovery, trainees can 
+                often find themselves overwhelmed or discouraged and rush to feed their existing self-doubts 
+                with examples of failed scientific experiments. We can't let that happen, can we?
+              </p>
+              
+              <p className="text-lg leading-relaxed">
+                In my learning environments, I aim to establish trust and maintain communication. We talk 
+                about goals, roadblocks and resources, and we map out our strategy. This is as true when 
+                I meet a mentee for the first time, as it is when I have worked with someone for years. 
+                A trainee's goals or circumstances can change, and she should always feel comfortable to 
+                come by and negotiate a new route forward. It is a mentor's job to always know what 
+                motivates her mentees and work with that knowledge to help them move forward.
+              </p>
+              
+              <p className="text-lg leading-relaxed">
+                My mentees tend to walk away with a bag of skills that includes technical expertise, 
+                time-management strategies, resourcefulness, improved science communication skills and 
+                intellectual independence. While I want my trainees to feel comfortable in my presence, 
+                I always challenge them to get out of their comfort zones and keep learning. I see myself 
+                as an island that they can swim back to for feedback and advice, before swimming off to 
+                find out how far their own skills will get them now.
+              </p>
+              
+              <p className="text-lg leading-relaxed">
+                I value my relationship with my trainees and often see them becoming great mentors themselves, 
+                using similar strategies to the ones I have taught them. It is exhilarating to realize time 
+                and time again that we are all here trying to understand intriguing natural phenomena, as much 
+                as we are all here to understand each other and lift each other up!
+              </p>
+            </div>
+          </motion.div>
 
-      {/* Botón siguiente */}
-      <button
-        onClick={() => {
-          nextSlide();
-          setAutoPlayActive(false); // desactiva autoplay al click manual
-        }}
-        className="absolute top-1/2 right-0 transform -translate-y-1/2 bg-gray-600/20 p-3 rounded-full hover:bg-gray-600/10 transition cursor-pointer"
-      >
-        <ChevronRight className=" w-6 h-6" />
-      </button>
-
-      {/* Puntos de navegación */}
-      <div className="flex justify-center gap-2 mt-6">
-          {slides.map((_, i) => (
-          <button
-            key={i}
-            onClick={() => handleManualChange(i)}
-            className={`w-3 h-3 rounded-full cursor-pointer ${
-              currentIndex === i ? "bg-gray-600/70" : "bg-gray-600/20"
-            }`}
-          />
-        ))}
+          {/* Image Column */}
+          <motion.div 
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="w-full md:w-2/5 order-1 md:order-2"
+          >
+            <div className="relative w-full">
+              <img
+                src={philosophyImg}
+                alt="Researcher working in laboratory"
+                className="w-full h-auto object-contain rounded-2xl shadow-lg max-h-[600px]"
+              />
+              {/* Optional overlay for better aesthetics */}
+              <div className="absolute inset-0 bg-gradient-to-t from-gray-900/10 to-transparent rounded-2xl"></div>
+            </div>
+          </motion.div>
+        </div>
       </div>
-    </div>
-      </div>
-  </section>
-);
+    </section>
+  );
 };
